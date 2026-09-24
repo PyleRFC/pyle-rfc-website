@@ -233,45 +233,6 @@
     .top-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:16px;align-items:stretch;}
     .bar-tile{height:auto;min-height:190px;}
   }
-
-  /* ---------- Coming soon overlay ---------- */
-  .overlay{
-    position:fixed;inset:0;
-    background:rgba(7,28,64,0.72);
-    display:none;
-    align-items:center;justify-content:center;
-    padding:20px;
-    z-index:50;
-  }
-  .overlay.open{display:flex;}
-  .overlay-card{
-    background:linear-gradient(160deg,var(--navy-soft),var(--navy));
-    border-radius:var(--radius);
-    box-shadow:0 0 0 1px var(--white-faint);
-    padding:28px 24px;
-    max-width:320px;
-    width:100%;
-    text-align:center;
-  }
-  .overlay-icon{
-    width:44px;height:44px;border-radius:12px;
-    background:rgba(59,130,246,0.18);
-    color:var(--blue-bright);
-    display:flex;align-items:center;justify-content:center;
-    font-size:18px;font-weight:800;
-    margin:0 auto 14px;
-  }
-  .overlay-card h3{margin:0 0 8px;font-size:18px;font-weight:800;}
-  .overlay-card p{margin:0 0 20px;font-size:13.5px;color:var(--white-dim);line-height:1.5;}
-  .overlay-close{
-    border:none;
-    background:var(--white);
-    color:var(--navy-deep);
-    font-size:13.5px;font-weight:700;
-    padding:10px 22px;
-    border-radius:10px;
-    cursor:pointer;
-  }
 </style>
 </head>
 <body>
@@ -364,7 +325,7 @@
   </div>
 
   <div class="nav-bars">
-    <a class="nav-bar" href="#about" onclick="openComingSoon('About', event)">
+    <a class="nav-bar" href="about.html">
       <div class="nb-left">
         <div class="icon">i</div>
         <div class="nb-text">
@@ -374,7 +335,7 @@
       </div>
       <div class="chev">›</div>
     </a>
-    <a class="nav-bar" href="#history" onclick="openComingSoon('History', event)">
+    <a class="nav-bar" href="history.html">
       <div class="nb-left">
         <div class="icon">H</div>
         <div class="nb-text">
@@ -384,7 +345,7 @@
       </div>
       <div class="chev">›</div>
     </a>
-    <a class="nav-bar" href="#achievements" onclick="openComingSoon('Achievements', event)">
+    <a class="nav-bar" href="achievements.html">
       <div class="nb-left">
         <div class="icon">★</div>
         <div class="nb-text">
@@ -398,15 +359,6 @@
 
 </main>
 
-<div id="comingSoonOverlay" class="overlay" onclick="closeComingSoon(event)">
-  <div class="overlay-card">
-    <div class="overlay-icon" id="comingSoonIcon">i</div>
-    <h3 id="comingSoonTitle">About</h3>
-    <p>Coming soon — this section is being written with the club and will be added shortly.</p>
-    <button class="overlay-close" onclick="closeComingSoon(event)">Close</button>
-  </div>
-</div>
-
 <footer>
   <div class="foot-brand">Pyle R.F.C. — Clwb Rygbi y Pîl</div>
   Brynglas Field, Beach Road, Pyle, Bridgend CF33 6AR — this is a design mockup with placeholder content.
@@ -418,19 +370,6 @@
     btn.classList.add('active');
     document.getElementById('pane-today').style.display = which==='today' ? 'block' : 'none';
     document.getElementById('pane-upcoming').style.display = which==='upcoming' ? 'block' : 'none';
-  }
-
-  var comingSoonIcons = { About: 'i', History: 'H', Achievements: '★' };
-  function openComingSoon(title, e){
-    if(e && e.preventDefault) e.preventDefault();
-    document.getElementById('comingSoonTitle').textContent = title;
-    document.getElementById('comingSoonIcon').textContent = comingSoonIcons[title] || 'i';
-    document.getElementById('comingSoonOverlay').classList.add('open');
-  }
-  function closeComingSoon(e){
-    if(e.target.id === 'comingSoonOverlay' || e.target.classList.contains('overlay-close')){
-      document.getElementById('comingSoonOverlay').classList.remove('open');
-    }
   }
 </script>
 
