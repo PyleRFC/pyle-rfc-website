@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="crest.png" type="image/png">
 <title>Achievements — Pyle RFC</title>
 <style>
   :root{
@@ -35,18 +36,8 @@
     margin:0 auto;
   }
   .brand{display:flex;align-items:center;gap:12px;}
-  .crest-badge{
-    width:48px;height:48px;flex:none;
-    border-radius:10px;
-    background:linear-gradient(155deg,var(--navy-soft),var(--navy-deep));
-    box-shadow:0 0 0 1px var(--white-faint);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    font-weight:800;letter-spacing:0.5px;
-    color:var(--white);
-    line-height:1.15;
-  }
-  .crest-badge .l1{font-size:12px;}
-  .crest-badge .l2{font-size:7.5px;font-weight:700;letter-spacing:0.8px;color:var(--white-dim);margin-top:1px;}
+  .crest-badge{width:48px;height:48px;flex:none;}
+  .crest-badge img{width:100%;height:100%;object-fit:contain;display:block;}
   .brand-text .name{font-weight:800;font-size:17px;letter-spacing:0.3px;}
   .brand-text .tagline{font-size:11.5px;color:var(--white-dim);margin-top:1px;}
 
@@ -112,7 +103,7 @@
 
 <header>
   <div class="brand">
-    <div class="crest-badge"><span class="l1">PYLE</span><span class="l2">R.F.C.</span></div>
+    <div class="crest-badge"><img src="crest.png" alt="Pyle RFC crest"></div>
     <div class="brand-text">
       <div class="name">PYLE R.F.C.</div>
       <div class="tagline">The Future's Bright, it's Blue &amp; White</div>
