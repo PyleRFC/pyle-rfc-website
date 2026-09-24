@@ -25,6 +25,7 @@
   }
   a{color:inherit;text-decoration:none;}
 
+  /* ---------- Header ---------- */
   header{
     display:flex;
     align-items:center;
@@ -51,6 +52,7 @@
 
   main{max-width:900px;margin:0 auto;padding:6px 20px 60px;}
 
+  /* ---------- Segmented control ---------- */
   .segmented{
     display:flex;
     background:var(--white-faint);
@@ -76,6 +78,7 @@
     color:var(--navy-deep);
   }
 
+  /* ---------- Match card (hero) ---------- */
   .match-card{
     background:linear-gradient(160deg,var(--navy-soft),var(--navy));
     border-radius:var(--radius);
@@ -145,44 +148,10 @@
   .upcoming-item .when{font-size:12px;color:var(--white-dim);text-align:right;}
   .upcoming-item .when .date{color:var(--white);font-weight:600;display:block;}
 
-  .section-card{
-    background:linear-gradient(160deg,var(--navy-soft),var(--navy));
-    border-radius:var(--radius);
-    padding:22px 20px 20px;
-    box-shadow:0 0 0 1px var(--white-faint);
-    margin-bottom:16px;
-  }
-  .section-card .label{
-    font-size:11.5px;text-transform:uppercase;letter-spacing:1.2px;
-    color:var(--blue-bright);font-weight:700;margin-bottom:12px;
-  }
-  .squad-list{max-height:210px;}
-  .squad-item{
-    display:flex;align-items:center;gap:10px;
-    padding:9px 2px;
-  }
-  .squad-item + .squad-item{border-top:1px solid var(--white-faint);}
-  .squad-num{
-    width:22px;height:22px;border-radius:6px;
-    background:rgba(59,130,246,0.18);
-    color:var(--blue-bright);
-    font-size:11px;font-weight:800;
-    display:flex;align-items:center;justify-content:center;
-    flex:none;
-  }
-  .squad-name{font-size:14px;font-weight:600;flex:1;}
-  .squad-pos{font-size:11.5px;color:var(--white-dim);}
-  .menu-list{max-height:210px;}
-  .menu-item{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:9px 2px;
-  }
-  .menu-item + .menu-item{border-top:1px solid var(--white-faint);}
-  .menu-name{font-size:14px;font-weight:600;}
-  .menu-price{font-size:13px;color:var(--white-dim);font-variant-numeric:tabular-nums;}
-
+  /* ---------- The Bar tile ---------- */
   .bar-tile{
     position:relative;
+    display:block;
     border-radius:var(--radius);
     overflow:hidden;
     height:190px;
@@ -212,6 +181,7 @@
   .bar-tile h2{margin:0 0 4px;font-size:19px;font-weight:800;}
   .bar-tile p{margin:0;font-size:12.5px;color:var(--white-dim);max-width:420px;}
 
+  /* ---------- Side / bottom nav bars ---------- */
   .nav-bars{
     display:flex;
     flex-direction:column;
@@ -264,6 +234,7 @@
     .bar-tile{height:auto;min-height:190px;}
   }
 
+  /* ---------- Coming soon overlay ---------- */
   .overlay{
     position:fixed;inset:0;
     background:rgba(7,28,64,0.72);
@@ -382,61 +353,14 @@
       <span class="placeholder-note">Fixture data is placeholder (Team A / Team B, sample dates) — swap in real results/fixtures once the club supplies a feed or league link.</span>
     </div>
 
-    <div class="bar-tile">
+    <a class="bar-tile" href="bar.html">
       <div class="bg"></div>
       <div class="content">
         <div class="label">The Bar</div>
         <h2>Clubhouse &amp; Bar</h2>
         <p>Open matchdays &amp; selected evenings. Function room available to hire for parties and events.</p>
       </div>
-    </div>
-  </div>
-
-  <div class="section-card">
-    <div class="label">Squad</div>
-    <div class="squad-list scroll-list">
-      <div class="squad-item"><span class="squad-num">1</span><span class="squad-name">Player A</span><span class="squad-pos">Loosehead Prop</span></div>
-      <div class="squad-item"><span class="squad-num">2</span><span class="squad-name">Player B</span><span class="squad-pos">Hooker</span></div>
-      <div class="squad-item"><span class="squad-num">3</span><span class="squad-name">Player C</span><span class="squad-pos">Tighthead Prop</span></div>
-      <div class="squad-item"><span class="squad-num">4</span><span class="squad-name">Player D</span><span class="squad-pos">Lock</span></div>
-      <div class="squad-item"><span class="squad-num">5</span><span class="squad-name">Player E</span><span class="squad-pos">Lock</span></div>
-      <div class="squad-item"><span class="squad-num">6</span><span class="squad-name">Player F</span><span class="squad-pos">Blindside Flanker</span></div>
-      <div class="squad-item"><span class="squad-num">7</span><span class="squad-name">Player G</span><span class="squad-pos">Openside Flanker</span></div>
-      <div class="squad-item"><span class="squad-num">8</span><span class="squad-name">Player H</span><span class="squad-pos">Number 8</span></div>
-      <div class="squad-item"><span class="squad-num">9</span><span class="squad-name">Player I</span><span class="squad-pos">Scrum-half</span></div>
-      <div class="squad-item"><span class="squad-num">10</span><span class="squad-name">Player J</span><span class="squad-pos">Fly-half</span></div>
-      <div class="squad-item"><span class="squad-num">11</span><span class="squad-name">Player K</span><span class="squad-pos">Wing</span></div>
-      <div class="squad-item"><span class="squad-num">12</span><span class="squad-name">Player L</span><span class="squad-pos">Inside Centre</span></div>
-      <div class="squad-item"><span class="squad-num">13</span><span class="squad-name">Player M</span><span class="squad-pos">Outside Centre</span></div>
-      <div class="squad-item"><span class="squad-num">14</span><span class="squad-name">Player N</span><span class="squad-pos">Wing</span></div>
-      <div class="squad-item"><span class="squad-num">15</span><span class="squad-name">Player O</span><span class="squad-pos">Fullback</span></div>
-      <div class="squad-item"><span class="squad-num">16</span><span class="squad-name">Player P</span><span class="squad-pos">Replacement</span></div>
-      <div class="squad-item"><span class="squad-num">17</span><span class="squad-name">Player Q</span><span class="squad-pos">Replacement</span></div>
-      <div class="squad-item"><span class="squad-num">18</span><span class="squad-name">Player R</span><span class="squad-pos">Replacement</span></div>
-      <div class="squad-item"><span class="squad-num">19</span><span class="squad-name">Player S</span><span class="squad-pos">Replacement</span></div>
-      <div class="squad-item"><span class="squad-num">20</span><span class="squad-name">Player T</span><span class="squad-pos">Replacement</span></div>
-      <div class="squad-item"><span class="squad-num">21</span><span class="squad-name">Player U</span><span class="squad-pos">Replacement</span></div>
-      <div class="squad-item"><span class="squad-num">22</span><span class="squad-name">Player V</span><span class="squad-pos">Replacement</span></div>
-      <div class="squad-item"><span class="squad-num">23</span><span class="squad-name">Player W</span><span class="squad-pos">Replacement</span></div>
-    </div>
-    <span class="placeholder-note">Squad is placeholder — a rugby union matchday squad is 23 players (15 starters + 8 replacements). Real names will replace these once confirmed with the club.</span>
-  </div>
-
-  <div class="section-card">
-    <div class="label">Bar Menu</div>
-    <div class="menu-list scroll-list">
-      <div class="menu-item"><span class="menu-name">Draught Lager</span><span class="menu-price">£4.50</span></div>
-      <div class="menu-item"><span class="menu-name">Local Ale</span><span class="menu-price">£4.20</span></div>
-      <div class="menu-item"><span class="menu-name">Cider</span><span class="menu-price">£4.30</span></div>
-      <div class="menu-item"><span class="menu-name">Soft Drink</span><span class="menu-price">£2.00</span></div>
-      <div class="menu-item"><span class="menu-name">Tea / Coffee</span><span class="menu-price">£1.80</span></div>
-      <div class="menu-item"><span class="menu-name">Cheese Toastie</span><span class="menu-price">£3.50</span></div>
-      <div class="menu-item"><span class="menu-name">Chips</span><span class="menu-price">£3.00</span></div>
-      <div class="menu-item"><span class="menu-name">Pie &amp; Chips</span><span class="menu-price">£6.50</span></div>
-      <div class="menu-item"><span class="menu-name">Bacon Roll</span><span class="menu-price">£3.20</span></div>
-      <div class="menu-item"><span class="menu-name">Sunday Roast (matchday)</span><span class="menu-price">£9.00</span></div>
-    </div>
-    <span class="placeholder-note">Menu is placeholder — swap in the clubhouse's real food &amp; drinks menu and prices.</span>
+    </a>
   </div>
 
   <div class="nav-bars">
