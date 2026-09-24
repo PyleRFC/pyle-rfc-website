@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pyle RFC</title>
+<style>
+  :root{
+    --navy:#0a2a5e;
+    --navy-deep:#071c40;
+    --navy-soft:#123a7a;
+    --blue-bright:#3b82f6;
+    --white:#ffffff;
+    --white-dim:rgba(255,255,255,0.72);
+    --white-faint:rgba(255,255,255,0.14);
+    --radius:20px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--navy-deep);
+    color:var(--white);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 20px 8px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .crest-badge{
+    width:44px;height:44px;flex:none;
+    border-radius:10px;
+    background:linear-gradient(155deg,var(--navy-soft),var(--navy-deep));
+    box-shadow:0 0 0 1px var(--white-faint);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:13px;letter-spacing:0.5px;
+    color:var(--white);
+  }
+  .brand-text .name{font-weight:800;font-size:17px;letter-spacing:0.3px;}
+  .brand-text .tagline{font-size:11.5px;color:var(--white-dim);margin-top:1px;}
+
+  main{max-width:900px;margin:0 auto;padding:6px 20px 60px;}
+
+  .segmented{
+    display:flex;
+    background:var(--white-faint);
+    border-radius:12px;
+    padding:3px;
+    margin:18px 0 14px;
+    max-width:280px;
+  }
+  .segmented button{
+    flex:1;
+    border:none;
+    background:transparent;
+    color:var(--white-dim);
+    font-size:13.5px;
+    font-weight:600;
+    padding:9px 0;
+    border-radius:9px;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+  }
+  .segmented button.active{
+    background:var(--white);
+    color:var(--navy-deep);
+  }
+
+  .match-card{
+    background:linear-gradient(160deg,var(--navy-soft),var(--navy));
+    border-radius:var(--radius);
+    padding:26px 22px 22px;
+    box-shadow:0 0 0 1px var(--white-faint);
+    margin-bottom:16px;
+  }
+  .match-card .label{
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+    color:var(--blue-bright);
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  .fixture-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 0;
+  }
+  .fixture-row + .fixture-row{
+    border-top:1px solid var(--white-faint);
+  }
+  .team{display:flex;align-items:center;gap:10px;flex:1;}
+  .team .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--white-faint);
+    flex:none;
+  }
+  .team.us .dot{background:var(--blue-bright);}
+  .team-name{font-size:15px;font-weight:600;}
+  .score{
+    font-size:26px;
+    font-weight:800;
+    font-variant-numeric:tabular-nums;
+    letter-spacing:-0.5px;
+    min-width:64px;
+    text-align:right;
+  }
+  .meta-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:var(--white-dim);
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid var(--white-faint);
+  }
+  .upcoming-list{display:none;}
+  .upcoming-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+  }
+  .upcoming-item + .upcoming-item{border-top:1px solid var(--white-faint);}
+  .upcoming-item .opp{font-size:14.5px;font-weight:600;}
+  .upcoming-item .when{font-size:12px;color:var(--white-dim);text-align:right;}
+  .upcoming-item .when .date{color:var(--white);font-weight:600;display:block;}
+
+  .bar-tile{
+    position:relative;
+    border-radius:var(--radius);
+    overflow:hidden;
+    height:190px;
+    margin-bottom:16px;
+    box-shadow:0 0 0 1px var(--white-faint);
+  }
+  .bar-tile .bg{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(120% 100% at 100% 0%, rgba(59,130,246,0.35), transparent 60%),
+      linear-gradient(155deg,var(--navy-soft),var(--navy-deep));
+  }
+  .bar-tile::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(10,42,94,0.05), rgba(7,28,64,0.85));
+  }
+  .bar-tile .content{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:18px 20px;
+    z-index:2;
+  }
+  .bar-tile .label{
+    font-size:11.5px;text-transform:uppercase;letter-spacing:1.2px;
+    color:var(--blue-bright);font-weight:700;margin-bottom:6px;
+  }
+  .bar-tile h2{margin:0 0 4px;font-size:19px;font-weight:800;}
+  .bar-tile p{margin:0;font-size:12.5px;color:var(--white-dim);max-width:420px;}
+
+  .nav-bars{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:22px;
+  }
+  .nav-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--navy-soft);
+    border-radius:14px;
+    padding:16px 18px;
+    box-shadow:0 0 0 1px var(--white-faint);
+    transition:background .15s ease;
+  }
+  .nav-bar:active{background:var(--navy);}
+  .nav-bar .nb-left{display:flex;align-items:center;gap:12px;}
+  .nav-bar .icon{
+    width:30px;height:30px;border-radius:8px;
+    background:rgba(59,130,246,0.18);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--blue-bright);
+    font-size:15px;
+    flex:none;
+  }
+  .nav-bar .nb-text .title{font-size:14.5px;font-weight:700;}
+  .nav-bar .nb-text .sub{font-size:11.5px;color:var(--white-dim);margin-top:1px;}
+  .nav-bar .chev{color:var(--white-dim);font-size:16px;}
+
+  footer{
+    max-width:900px;margin:0 auto;padding:28px 20px 40px;
+    color:var(--white-dim);font-size:12px;
+    border-top:1px solid var(--white-faint);
+  }
+  footer .foot-brand{color:var(--white);font-weight:700;font-size:13px;margin-bottom:4px;}
+
+  .placeholder-note{
+    display:inline-block;
+    margin-top:14px;
+    font-size:11px;
+    color:var(--white-dim);
+    background:var(--white-faint);
+    padding:6px 10px;
+    border-radius:8px;
+  }
+
+  @media (min-width:720px){
+    .top-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:16px;align-items:start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="crest-badge">PYLE</div>
+    <div class="brand-text">
+      <div class="name">PYLE R.F.C.</div>
+      <div class="tagline">The Future's Bright, it's Blue &amp; White</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="top-grid">
+    <div>
+      <div class="segmented">
+        <button class="active" onclick="showPane('today', this)">Today</button>
+        <button onclick="showPane('upcoming', this)">Upcoming</button>
+      </div>
+
+      <div class="match-card">
+        <div id="pane-today">
+          <div class="label">Today</div>
+          <div class="fixture-row">
+            <div class="team us"><span class="dot"></span><span class="team-name">Pyle RFC</span></div>
+            <div class="score">–</div>
+          </div>
+          <div class="fixture-row">
+            <div class="team"><span class="dot"></span><span class="team-name">No match scheduled</span></div>
+            <div class="score">–</div>
+          </div>
+          <div class="meta-row">
+            <span>Brynglas Field</span>
+            <span>Placeholder — connect fixtures</span>
+          </div>
+        </div>
+
+        <div id="pane-upcoming" class="upcoming-list">
+          <div class="label">Upcoming</div>
+          <div class="upcoming-item">
+            <div class="opp">Pyle RFC vs Opponent TBC</div>
+            <div class="when"><span class="date">Sat</span>KO 14:30</div>
+          </div>
+          <div class="upcoming-item">
+            <div class="opp">Opponent TBC vs Pyle RFC</div>
+            <div class="when"><span class="date">Sat +1wk</span>KO 14:30</div>
+          </div>
+          <div class="upcoming-item">
+            <div class="opp">Pyle RFC vs Opponent TBC</div>
+            <div class="when"><span class="date">Sat +2wk</span>KO 14:30</div>
+          </div>
+        </div>
+      </div>
+      <span class="placeholder-note">Fixture data is placeholder — swap in real results/fixtures once the club supplies a feed or league link.</span>
+    </div>
+
+    <div class="bar-tile">
+      <div class="bg"></div>
+      <div class="content">
+        <div class="label">The Bar</div>
+        <h2>Clubhouse &amp; Bar</h2>
+        <p>Open matchdays &amp; selected evenings. Function room available to hire for parties and events.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-bars">
+    <a class="nav-bar" href="#about">
+      <div class="nb-left">
+        <div class="icon">i</div>
+        <div class="nb-text">
+          <div class="title">About</div>
+          <div class="sub">Who we are, Brynglas Field, the club today</div>
+        </div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+    <a class="nav-bar" href="#history">
+      <div class="nb-left">
+        <div class="icon">H</div>
+        <div class="nb-text">
+          <div class="title">History</div>
+          <div class="sub">From the club's early years to today</div>
+        </div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+    <a class="nav-bar" href="#achievements">
+      <div class="nb-left">
+        <div class="icon">★</div>
+        <div class="nb-text">
+          <div class="title">Achievements</div>
+          <div class="sub">Honours, promotions &amp; club records</div>
+        </div>
+      </div>
+      <div class="chev">›</div>
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="foot-brand">Pyle R.F.C. — Clwb Rygbi y Pîl</div>
+  Brynglas Field, Beach Road, Pyle, Bridgend CF33 6AR — this is a design mockup with placeholder content.
+</footer>
+
+<script>
+  function showPane(which, btn){
+    document.querySelectorAll('.segmented button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pane-today').style.display = which==='today' ? 'block' : 'none';
+    document.getElementById('pane-upcoming').style.display = which==='upcoming' ? 'block' : 'none';
+  }
+</script>
+
+</body>
+</html>
